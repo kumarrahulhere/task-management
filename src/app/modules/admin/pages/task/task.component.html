@@ -1,0 +1,112 @@
+<section>
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div
+          class="col-sm-4 d-flex justify-content-center justify-content-lg-start mt-2"
+        >
+          <div class="header-start">
+            <h5 class="card-title mb-0">Rahul kumar</h5>
+            <p class="text-muted mb-0 small">rkpassin132@gmail.com</p>
+          </div>
+        </div>
+        <div
+          class="col-sm-4 d-flex justify-content-center justify-content-lg-center mt-2"
+        >
+          <div class="header-middle">
+            <span class="badge rounded-pill badge-success">
+              <i class="fas fa-spinner"></i> In Progress
+            </span>
+          </div>
+        </div>
+        <div
+          class="col-sm-4 d-flex justify-content-center justify-content-lg-end mt-2"
+        >
+          <div class="header-end">
+            <button class="btn btn-secondary">Change Status</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body pt-0">
+      <div class="comment-container">
+        <div class="comment">
+          <div class="admin-detail text-primary">
+            <i class="fas fa-user-circle"></i> Admin
+            <span class="badge bg-warning text-wrap"
+              >12:30 P.M 17/02/2023 Monday</span
+            >
+          </div>
+          <div class="task">
+            <ul class="list-unstyled">
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Consectetur adipiscing elit</li>
+              <li>Integer molestie lorem at massa</li>
+              <li>Facilisis in pretium nisl aliquet</li>
+              <li>
+                Nulla volutpat aliquam velit
+                <ul>
+                  <li>Phasellus iaculis neque</li>
+                  <li>Purus sodales ultricies</li>
+                  <li>Vestibulum laoreet porttitor sem</li>
+                  <li>Ac tristique libero volutpat at</li>
+                </ul>
+              </li>
+              <li>Faucibus porta lacus fringilla vel</li>
+              <li>Aenean sit amet erat nunc</li>
+              <li>Eget porttitor lorem</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="hr hr-blurry" />
+        <div class="comment">
+          <div class="user-detail text-dark">
+            <mat-icon fontIcon="person_pin"></mat-icon> User
+            <span class="badge bg-warning text-wrap"
+              >12:30 P.M 17/02/2023 Monday</span
+            >
+          </div>
+          <div class="task">
+            <ul class="list-unstyled">
+              <li>Facilisis in pretium nisl aliquet</li>
+              <li>
+                Nulla volutpat aliquam velit
+                <ul>
+                  <li>Phasellus iaculis neque</li>
+                  <li>Purus sodales ultricies</li>
+                  <li>Vestibulum laoreet porttitor sem</li>
+                  <li>Ac tristique libero volutpat at</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="comment">
+          <div class="user-detail text-dark">
+            <i class="fas fa-user-circle"></i> User
+            <span class="badge bg-warning text-wrap"
+              >12:30 P.M 17/02/2023 Monday</span
+            >
+          </div>
+          <div class="task">
+            <p>This job is done</p>
+          </div>
+        </div>
+        <hr class="hr hr-blurry" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container comment-section">
+  <mat-card>
+    <mat-card-content>
+      <ckeditor
+        formControlName="discription"
+        [editor]="Editor"
+        [config]="configEditor"
+        data=""
+      ></ckeditor>
+    </mat-card-content>
+  </mat-card>
+</section>

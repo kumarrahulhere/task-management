@@ -1,0 +1,72 @@
+<section>
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-6">User Details</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <mdb-form-control>
+        <input
+          mdbInput
+          type="text"
+          id="form1"
+          class="form-control"
+          (keyup)="applyFilter($event)"
+        />
+        <label mdbLabel class="form-label" for="form1">Search here...</label>
+      </mdb-form-control>
+      <mat-table [dataSource]="dataSource" matSort>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <div class="pt-2 pb-2">
+              <a routerLink="" class="user"
+                ><p class="fw-bold mb-1 text-truncate">{{ row.name }}</p></a
+              >
+              <p class="text-muted mb-0 text-truncate">john.doe@gmail.com</p>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Status
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <span class="badge badge-success rounded-pill d-inline">{{
+              row.status
+            }}</span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button
+              title="Make user un-verify"
+              type="button"
+              class="btn btn-link btn-sm btn-rounded text-danger"
+              (click)="openDialog()"
+            >
+              Un-Verify
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
+</section>

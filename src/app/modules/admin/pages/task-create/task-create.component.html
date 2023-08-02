@@ -1,0 +1,108 @@
+<section>
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-6">Create New task</div>
+        <div class="col-sm-6 d-flex flex-row-reverse">
+          <a routerLink="/admin/task-list" class="btn btn-secondary"
+            ><i class="fas fa-list-ul"></i> Task List</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="note note-info">
+        <strong><i class="fas fa-info-circle"></i> Note :</strong> Initially,
+        the task status will be set as '<strong>No status</strong>'. However,
+        both users and administrators can change the task status to one of the
+        following options: '<strong>Pending</strong>', '<strong>Ready</strong>',
+        '<strong>In progress</strong>', or '<strong>Done</strong>' based on
+        their needs.
+      </p>
+      <p
+        class="note note-danger small"
+        *ngIf="taskStatus.message && !taskStatus.success"
+      >
+        <strong>Error: </strong> {{ taskStatus.message }}
+      </p>
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <mat-form-field>
+              <mat-label>User</mat-label>
+              <mat-select required formControlName="user" name="user">
+                <input class="form-control" (keyup)="onKey($event)" />
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let user of selectedUser" [value]="user">{{
+                  user
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div
+              class="text-capitalize text-danger input-error"
+              *ngIf="checkFormData.check('user')"
+            >
+              {{ checkFormData.getMessage("user") }}
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field class="w-100">
+              <mat-label>Task title</mat-label>
+              <input
+                matInput
+                required
+                formControlName="title"
+                name="title"
+                placeholder="Task Title"
+              />
+            </mat-form-field>
+            <div
+              class="text-capitalize text-danger input-error"
+              *ngIf="checkFormData.check('title')"
+            >
+              {{ checkFormData.getMessage("title") }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <ckeditor
+              formControlName="discription"
+              [editor]="Editor"
+              [config]="configEditor"
+              data=""
+            ></ckeditor>
+            <div
+              class="text-capitalize text-danger input-error mt-1"
+              *ngIf="checkFormData.check('discription')"
+            >
+              {{ checkFormData.getMessage("discription") }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <div class="row mt-4">
+          <div class="col-sm-3">
+            <button
+              mdbRipple
+              type="submit"
+              [disabled]="!taskForm.valid || taskStatus.loading"
+              class="btn btn-primary btn-block mb-4"
+            >
+              <span
+                [hidden]="!taskStatus.loading"
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Create
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

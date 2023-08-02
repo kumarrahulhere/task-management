@@ -1,0 +1,71 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-brand">
+      <button
+        class="btn btn-rounded btn-link text-dark"
+        mdbRipple
+        (click)="drawer.toggle()"
+      >
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+      <img
+        src="/assets/logo.png"
+        class="me-2"
+        height="20"
+        alt=""
+        loading="lazy"
+      />
+      <small>75Way Task</small>
+    </div>
+
+    <ul class="navbar-nav flex-row">
+      <li class="nav-item me-3 me-lg-1">
+        <a
+          class="nav-link"
+          style="cursor: pointer"
+          (click)="logout()"
+          title="logout"
+        >
+          <span><i class="fas fa-right-from-bracket fa-lg"></i></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<mat-drawer-container
+  autosize
+  style="background: transparent; height: -webkit-fill-available"
+>
+  <mat-drawer #drawer opened="true" mode="side">
+    <mat-list>
+      <div mat-subheader>Menu</div>
+      <mat-list-item routerLink="/admin/dashboard">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <div matListItemTitle>Users</div>
+      </mat-list-item>
+
+      <mat-accordion>
+        <mat-expansion-panel class="mat-elevation-z0">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Task </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list-item routerLink="/admin/create-task">
+            <mat-icon matListItemIcon>add_task</mat-icon>
+            <div matListItemTitle>Create</div>
+          </mat-list-item>
+          <mat-list-item routerLink="/admin/task-list">
+            <mat-icon matListItemIcon>task</mat-icon>
+            <div matListItemTitle>List</div>
+          </mat-list-item>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

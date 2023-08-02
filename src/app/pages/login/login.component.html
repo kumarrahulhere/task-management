@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row p-4 mt-3 text-center">
+    <div class="col">
+      <img alt="example" class="img-fluid rounded" src="/assets/logo.png" />
+    </div>
+  </div>
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="card w-50">
+      <div class="card-header">
+        <h5 class="card-title">Login here</h5>
+      </div>
+      <div class="card-body">
+        <p
+          class="note note-danger small"
+          *ngIf="loginStatus.message && !loginStatus.success"
+        >
+          <strong>Error: </strong> {{ loginStatus.message }}
+        </p>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <!-- Email input -->
+          <div class="col-sm-12">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="email"
+                id="email"
+                class="form-control"
+                name="email"
+                formControlName="email"
+              />
+              <label mdbLabel class="form-label" for="email"
+                >Email address <span class="text-danger">*</span></label
+              >
+            </mdb-form-control>
+            <div
+              class="text-capitalize text-danger input-error"
+              *ngIf="checkFormData.check('email')"
+            >
+              {{ checkFormData.getMessage("email") }}
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="col-sm-12">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="password"
+                id="password"
+                class="form-control"
+                name="password"
+                formControlName="password"
+              />
+              <label mdbLabel class="form-label" for="password"
+                >Password <span class="text-danger">*</span></label
+              >
+            </mdb-form-control>
+            <div
+              class="text-capitalize text-danger input-error"
+              *ngIf="checkFormData.check('password')"
+            >
+              {{ checkFormData.getMessage("password") }}
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <button
+            mdbRipple
+            type="submit"
+            [disabled]="!loginForm.valid || loginStatus.loading"
+            class="btn btn-primary btn-block mb-4"
+          >
+            <span
+              [hidden]="!loginStatus.loading"
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            Login
+          </button>
+
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>Not a member? <a routerLink="/register">Register</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

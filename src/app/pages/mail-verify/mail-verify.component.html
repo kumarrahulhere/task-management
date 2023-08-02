@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row p-4 mt-3 text-center">
+    <div class="col">
+      <img alt="example" class="img-fluid rounded" src="/assets/logo.png" />
+    </div>
+  </div>
+  <div class="d-flex align-items-center justify-content-center text-center">
+    <div class="card w-50">
+      <div class="card-body" *ngIf="token == null">
+        <h5 class="card-title">Please verify your email</h5>
+        <p class="">
+          Please check your email for verification. If you not able to find mail
+          in inbox then please check spam section.
+        </p>
+        <img
+          alt="email"
+          class="img-fluid rounded w-50"
+          src="/assets/email.png"
+        />
+      </div>
+      <div class="card-body" *ngIf="token">
+        <div class="not-verified" *ngIf="!verifyStatus.success">
+          <h5 class="card-title">Verifying you account.</h5>
+          <p>Please wait a while</p>
+          <img
+            alt="email"
+            class="img-fluid rounded w-50"
+            src="/assets/email.png"
+          />
+          <div>
+            <div
+              *ngIf="verifyStatus.loading"
+              class="spinner-border text-primary"
+              role="status"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+        <div class="verified" *ngIf="verifyStatus.success">
+          <h5 class="card-title">
+            {{ verifyStatus.message }}
+          </h5>
+          <p>Please click on login.</p>
+          <img
+            alt="email"
+            class="img-fluid rounded w-50"
+            src="/assets/verified-mail.png"
+          />
+          <div>
+            <a routerLink="/login" class="btn btn-primary">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
