@@ -5,6 +5,16 @@
      width: 83%;
      margin-bottom: 0;
 }
+.admin-detail {
+     color: #006b7f !important;
+     font-weight: 600;
+}
+.admin-detail,
+.user-detail {
+     span {
+          margin-left: 10px;
+     }
+}
 .user-detail {
      font-size: 16px;
      font-weight: 500;
@@ -22,4 +32,10 @@
 }
 .header-middle {
      font-size: 17px !important;
+}
+::ng-deep {
+     .ck-editor__editable {
+          min-height: 100px !important;
+          max-height: 300px !important;
+     }
 }

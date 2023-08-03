@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     public checkFormData: CheckFormDataService
   ) {
     this.loginForm = this.fb.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, passwordValidator]],
+      email: ["rkpassin132@gmail.com", [Validators.required, Validators.email]],
+      password: ["hjRDS@6Nh", [Validators.required, passwordValidator]],
     });
   }
 

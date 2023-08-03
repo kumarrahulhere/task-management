@@ -37,33 +37,52 @@
   autosize
   style="background: transparent; height: -webkit-fill-available"
 >
-  <mat-drawer #drawer opened="true" mode="side">
+  <mat-drawer
+    #drawer
+    [opened]="isTablet ? false : true"
+    [mode]="isTablet ? 'over' : 'side'"
+  >
     <mat-list>
       <div mat-subheader>Menu</div>
-      <mat-list-item routerLink="/admin/dashboard">
+      <mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">
         <mat-icon matListItemIcon>person</mat-icon>
         <div matListItemTitle>Users</div>
       </mat-list-item>
-
+      <mat-divider></mat-divider>
       <mat-accordion>
-        <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel
+          expanded="true"
+          class="mat-elevation-z0"
+          style="padding: 0"
+        >
           <mat-expansion-panel-header>
             <mat-panel-title> Task </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-list-item routerLink="/admin/create-task">
+          <mat-list-item
+            routerLink="/admin/create-task"
+            routerLinkActive="active"
+          >
             <mat-icon matListItemIcon>add_task</mat-icon>
             <div matListItemTitle>Create</div>
           </mat-list-item>
-          <mat-list-item routerLink="/admin/task-list">
+          <mat-list-item
+            routerLink="/admin/task-list"
+            routerLinkActive="active"
+          >
             <mat-icon matListItemIcon>task</mat-icon>
             <div matListItemTitle>List</div>
           </mat-list-item>
         </mat-expansion-panel>
       </mat-accordion>
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="logout()">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <div matListItemTitle>Logout</div>
+      </mat-list-item>
     </mat-list>
   </mat-drawer>
 
-  <mat-drawer-content>
+  <mat-drawer-content style="padding-bottom: 60px">
     <div class="container">
       <router-outlet></router-outlet>
     </div>

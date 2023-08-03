@@ -1,7 +1,43 @@
+mat-list-item {
+     min-width: 100px;
+     border-radius: 8px !important;
+     transition: 0.3s;
+     height: 46px !important;
+     mat-icon {
+          color: #00748c;
+     }
+}
 mat-list-item:hover {
      background-color: aliceblue;
      cursor: pointer;
 }
+mat-divider {
+     margin: 10px 0;
+}
 mat-drawer-container {
      flex: 1 1 auto;
+}
+::ng-deep {
+     mat-expansion-panel {
+          .mat-expansion-panel-body {
+               padding: 0;
+               padding-left: 10px;
+          }
+     }
+}
+.mat-drawer {
+     min-width: 200px !important;
+     padding: 10px !important;
+}
+.active {
+     background-color: #007d99;
+     border-radius: 8px !important;
+     transition: 0.5s;
+     mat-icon,
+     .mat-mdc-list-item-title {
+          color: white !important;
+     }
+}
+.active:hover {
+     background-color: #02596c;
 }
