@@ -20,22 +20,34 @@
         their needs.
       </p>
       <p
-        class="note note-danger small"
-        *ngIf="taskStatus.message && !taskStatus.success"
+        class="note note-success small"
+        *ngIf="createTaskStatus.message && createTaskStatus.success"
       >
-        <strong>Error: </strong> {{ taskStatus.message }}
+        {{ createTaskStatus.message }}
+      </p>
+      <p
+        class="note note-danger small"
+        *ngIf="createTaskStatus.message && !createTaskStatus.success"
+      >
+        <strong>Error: </strong> {{ createTaskStatus.message }}
       </p>
       <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-sm-6 col-lg-3">
             <mat-form-field>
               <mat-label>User</mat-label>
-              <mat-select required formControlName="user" name="user">
+              <mat-select
+                required
+                formControlName="assignedTo"
+                name="assignedTo"
+              >
                 <input class="form-control" (keyup)="onKey($event)" />
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let user of selectedUser" [value]="user">{{
-                  user
-                }}</mat-option>
+                <mat-option
+                  *ngFor="let user of selectedUser"
+                  [value]="user._id"
+                  >{{ user.name }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
             <div
@@ -69,16 +81,16 @@
         <div class="row">
           <div class="col-sm-12">
             <ckeditor
-              formControlName="discription"
+              formControlName="description"
               [editor]="Editor"
               [config]="configEditor"
               data=""
             ></ckeditor>
             <div
               class="text-capitalize text-danger input-error mt-1"
-              *ngIf="checkFormData.check('discription')"
+              *ngIf="checkFormData.check('description')"
             >
-              {{ checkFormData.getMessage("discription") }}
+              {{ checkFormData.getMessage("description") }}
             </div>
           </div>
         </div>
@@ -89,11 +101,11 @@
             <button
               mdbRipple
               type="submit"
-              [disabled]="!taskForm.valid || taskStatus.loading"
+              [disabled]="!taskForm.valid || createTaskStatus.loading"
               class="btn btn-primary btn-block mb-4"
             >
               <span
-                [hidden]="!taskStatus.loading"
+                *ngIf="createTaskStatus.loading"
                 class="spinner-border spinner-border-sm"
                 role="status"
                 aria-hidden="true"

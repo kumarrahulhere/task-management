@@ -6,6 +6,11 @@
       </div>
     </div>
     <div class="card-body">
+      <div class="text-center" *ngIf="usersStatus.loading">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
       <mdb-form-control>
         <input
           mdbInput
@@ -27,7 +32,18 @@
               <a routerLink="" class="user"
                 ><p class="fw-bold mb-1 text-truncate">{{ row.name }}</p></a
               >
-              <p class="text-muted mb-0 text-truncate">john.doe@gmail.com</p>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Email
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <div class="pt-2 pb-2">
+              <p class="text-muted mb-0 text-truncate">{{ row.email }}</p>
             </div>
           </mat-cell>
         </ng-container>
@@ -38,23 +54,48 @@
             Status
           </mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <span class="badge badge-success rounded-pill d-inline">{{
-              row.status
-            }}</span>
+            <h6>
+              <span
+                class="badge rounded-pill d-inline"
+                [ngClass]="row.verified ? 'badge-success' : 'badge-danger'"
+              >
+                <i *ngIf="row.verified" class="fas fa-check-circle"></i>
+                <i *ngIf="!row.verified" class="fas fa-ban"></i>
+                {{ row.verified ? "Verified" : "Un-verified" }}</span
+              >
+            </h6>
           </mat-cell>
         </ng-container>
 
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-          <mat-cell *matCellDef="let row">
+          <mat-header-cell
+            *matHeaderCellDef
+            class="d-flex flex-row justify-content-end"
+          >
+            Action
+          </mat-header-cell>
+          <mat-cell
+            *matCellDef="let row"
+            class="d-flex flex-row justify-content-end"
+          >
+            <button
+              title="Make user un-verify"
+              type="button"
+              class="btn btn-link btn-sm btn-rounded"
+              [ngClass]="row.verified ? 'text-danger' : 'text-success'"
+              (click)="openDialog(row)"
+            >
+              {{ row.verified ? "Un-Verify" : "Verify" }}
+            </button>
+            <div class="vr" style="height: 30px; margin: 18px 5px"></div>
             <button
               title="Make user un-verify"
               type="button"
               class="btn btn-link btn-sm btn-rounded text-danger"
-              (click)="openDialog()"
+              (click)="deleteDialog(row)"
             >
-              Un-Verify
+              <i class="fas fa-trash"></i>
             </button>
           </mat-cell>
         </ng-container>

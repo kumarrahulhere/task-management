@@ -4,17 +4,17 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-} from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, catchError, tap, throwError } from 'rxjs';
-import { AuthService } from '../auth.service';
+} from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { Observable, catchError, tap, throwError } from "rxjs";
+import { AuthService } from "../auth.service";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class HttpInterceptorService implements HttpInterceptor {
-  baseUrl: string = 'http://localhost:3000/api/v1/';
+  baseUrl: string = "http://localhost:3000/api/v1/";
 
   constructor(private router: Router, private auth: AuthService) {}
 
@@ -24,10 +24,10 @@ export class HttpInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const authReq = req.clone({
       url: this.baseUrl + req.url,
+      setHeaders: {
+        Authorization: `Bearer ${this.auth.getToken()}`,
+      },
     });
-    if (this.auth.isLoggedIn()) {
-      authReq.headers.set('Authorization', `Bearer ${this.auth.getToken()}`);
-    }
 
     return next.handle(authReq).pipe(tap(() => {}, this.handleError));
   }
@@ -39,7 +39,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         return;
       }
       this.auth.logout();
-      this.router.navigate(['login']);
+      this.router.navigate(["login"]);
     }
   };
 }

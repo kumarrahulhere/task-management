@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import IRequestStatus from 'src/app/interface/IRequestStatus';
-import { AuthHttpService } from 'src/app/services/api/auth-http.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import IRequestStatus from "src/app/interface/IRequestStatus";
+import { AuthHttpService } from "src/app/services/api/auth-http.service";
 
 @Component({
-  selector: 'app-mail-verify',
-  templateUrl: './mail-verify.component.html',
-  styleUrls: ['./mail-verify.component.scss'],
+  selector: "app-mail-verify",
+  templateUrl: "./mail-verify.component.html",
+  styleUrls: ["./mail-verify.component.scss"],
 })
 export class MailVerifyComponent implements OnInit {
   token!: string | null;
@@ -21,8 +21,8 @@ export class MailVerifyComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.route.snapshot.queryParamMap.has('token')) {
-      this.token = this.route.snapshot.queryParamMap.get('token');
+    if (this.route.snapshot.queryParamMap.has("token")) {
+      this.token = this.route.snapshot.queryParamMap.get("token");
       this.verifyMail();
     }
   }
@@ -37,6 +37,5 @@ export class MailVerifyComponent implements OnInit {
       this.verifyStatus.loading = false;
       this.verifyStatus = error.error;
     }
-    console.log(this.verifyStatus);
   }
 }

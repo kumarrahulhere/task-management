@@ -28,6 +28,8 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { TaskComponent } from "./pages/task/task.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatCardModule } from "@angular/material/card";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { DeleteUserDialogComponent } from './components/delete-user-dialog/delete-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { MatCardModule } from "@angular/material/card";
     TaskListComponent,
     DeleteTaskDialogComponent,
     TaskComponent,
+    DeleteUserDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +64,7 @@ import { MatCardModule } from "@angular/material/card";
     CKEditorModule,
     MatChipsModule,
     MatCardModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class AdminModule {}

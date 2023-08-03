@@ -1,15 +1,15 @@
-<h1 mat-dialog-title class="bold">Delete task</h1>
+<h1 mat-dialog-title class="bold">Delete user account</h1>
 <div mat-dialog-content>
   <p>
-    If you delete this task all comment and reply also delete with this task.
-    Delete your task carefully.
+    If you delete this user, all associated tasks, comments, and replies will
+    also be deleted. Therefore, please delete the user carefully.
   </p>
 </div>
 <div mat-dialog-actions>
   <button
-    class="btn btn-danger verify"
+    class="btn verify btn-danger"
     [disabled]="deleteStatus.loading"
-    (click)="deleteTask()"
+    (click)="deleteUser()"
   >
     <div
       class="spinner-border text-dark spinner-border-sm"

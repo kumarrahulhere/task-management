@@ -11,6 +11,12 @@
       </div>
     </div>
     <div class="card-body">
+      <div class="text-center" *ngIf="taskStatus.loading">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
       <mdb-form-control>
         <input
           mdbInput
@@ -29,7 +35,7 @@
           </mat-header-cell>
           <mat-cell *matCellDef="let row">
             <div class="pt-2 pb-2">
-              <p class="mb-0 text-truncate">{{ row.name }}</p>
+              <p class="mb-0 text-truncate">{{ row.title }}</p>
             </div>
           </mat-cell>
         </ng-container>
@@ -40,7 +46,7 @@
             User
           </mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <p class="mb-0 text-truncate">{{ row.user }}</p>
+            <p class="mb-0 text-truncate">{{ row.assignedToUser?.email }}</p>
           </mat-cell>
         </ng-container>
 
@@ -50,9 +56,13 @@
             Status
           </mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <span class="badge badge-success rounded-pill d-inline">{{
-              row.status
-            }}</span>
+            <h6>
+              <span
+                class="badge badge-success rounded-pill d-inline text-white"
+                [style.background]="TaskState[row.state]?.color"
+                >{{ TaskState[row.state]?.name }}</span
+              >
+            </h6>
           </mat-cell>
         </ng-container>
 
@@ -64,7 +74,7 @@
               title="Delete task"
               type="button"
               class="btn btn-link btn-sm btn-rounded text-danger"
-              (click)="openDialog()"
+              (click)="deleteDialog(row)"
             >
               Delete
             </button>

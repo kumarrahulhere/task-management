@@ -1,8 +1,33 @@
-<h1 mat-dialog-title class="bold">Verify user account</h1>
+<h1 mat-dialog-title class="bold">User account</h1>
 <div mat-dialog-content>
-  <p>If you want to toggle verify user account, then click on verify button</p>
+  <p *ngIf="!data.verified">
+    If you want to verify user account, then click on verify button
+  </p>
+  <p *ngIf="data.verified">
+    If you want to un-verify user account, then click on un-verify button
+  </p>
 </div>
 <div mat-dialog-actions>
-  <button class="btn btn-success verify">Verify</button>
-  <button class="btn btn-light" mat-dialog-close>Close</button>
+  <button
+    class="btn verify"
+    [ngClass]="data.verified ? 'btn-danger' : 'btn-success'"
+    [disabled]="toggleStatus.loading"
+    (click)="toggleVerification()"
+  >
+    <div
+      class="spinner-border text-dark spinner-border-sm"
+      role="status"
+      *ngIf="toggleStatus.loading"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    {{ data.verified ? "Un-verify" : "Verify" }}
+  </button>
+  <button
+    class="btn btn-light"
+    mat-dialog-close
+    [disabled]="toggleStatus.loading"
+  >
+    Close
+  </button>
 </div>

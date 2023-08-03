@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import IRequestStatus from '../interface/IRequestStatus';
+import { Injectable } from "@angular/core";
+import IRequestStatus from "../interface/IRequestStatus";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CheckFormDataService {
   form: any;
@@ -25,9 +25,6 @@ export class CheckFormDataService {
   getMessage(input: string, msg: string | null = null) {
     const control = this.form.get(input);
     let message = `${input} is required`;
-    console.log(this.requestStatus);
-    // console.log(this.requestStatus.errors[input]);
-    // console.log(this.requestStatus.errors?.[input] ?? message);
     return this.requestStatus.errors?.[input] ?? message;
   }
 }

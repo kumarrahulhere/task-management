@@ -8,3 +8,9 @@ h1 {
 .verify {
      margin-right: 20px;
 }
+::ng-deep {
+     .mat-mdc-dialog-container {
+          min-width: 200px;
+          max-width: 300px;
+     }
+}

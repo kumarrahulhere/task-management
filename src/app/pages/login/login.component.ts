@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     if (!this.loginForm.valid) {
       this.loginForm.markAllAsTouched();
-      // return false;
+      return false;
     }
     try {
       this.loginStatus.loading = true;
